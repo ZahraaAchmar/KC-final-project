@@ -4,10 +4,13 @@ import threading
 import random
 
 class TypeSpeedGUI:
+
     def __init__(self):
+        self.running = True
         self.stt = tk.Tk()
         self.stt.title("speed typing test")
         self.stt.geometry("800x600")
+        self.stt.configure(bg="black")
 
         self.Texts = open("Texts.txt", "r").read().split("\n")
 
@@ -35,18 +38,17 @@ class TypeSpeedGUI:
 
     def start(self, event):
         if not self.running:
-            if not event.Keycode in [16, 17, 18]:
+            if not event.Keycode in [19, 20, 21]:
                 self.running = True
-                t =threading.Thread(target= self.time_thread)
+                t =threading.Thread(target=self.time_thread)
                 t.start()
-        if not self.sample_label.cget("text").starswith(self.input_entry.get()):
+        if not self.sample_label.cget("text").startswith(self.input_entry.get()):
             self.input_entry.config(fg="red")
         else:
             self.input_entry.config(fg="black")       
-        if self.input_entry.get() == self.sample_label.cget("text")[:-1]:
+        if self.input_entry.get() == self.sample_label.cget("text"):
             self.running = False
             self.input_entry.config(fg="green") 
-
 
     def time_thread(self):
         while self.running:
@@ -64,5 +66,5 @@ class TypeSpeedGUI:
         self.sample_label.config(text="Speed: \n0.00 CPS\n0.00 CPM\n0.00 WPS\n0.00 WPM")
         self.sample_label.config(text= random.choice(self.Texts))
         self.input_entry.delete(0, tk.END)
-
+        
 TypeSpeedGUI()
