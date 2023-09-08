@@ -66,7 +66,7 @@ class TypeSpeedGUI:
     def reset(self):
         self.running = False
         self.counter = 0
-        self.sample_label.config(text="Speed: \n0.00 CPS\n0.00 CPM\n0.00 WPS\n0.00 WPM")
+        self.sample_label.config(text="Speed: \n0.00 CPS\n0.00 CPM\n0.00 WPS\n0.00 WPS")
         self.sample_label.config(text= random.choice(self.Texts))
         self.input_entry.delete(0, tk.END)
         
