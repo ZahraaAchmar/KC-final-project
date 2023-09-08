@@ -11,6 +11,7 @@ class TypeSpeedGUI:
         self.stt.title("speed typing test")
         self.stt.geometry("800x600")
         self.stt.configure(bg="black")
+        #keycode = event.keycode
 
         self.Texts = open("Texts.txt", "r").read().split("\n")
 
@@ -31,14 +32,14 @@ class TypeSpeedGUI:
 
         self.frame.pack(expand=True)
 
-        self.counter = 0
+        self.counter = 0.0
         self.started = False
 
         self.stt.mainloop()
 
     def start(self, event):
         if not self.running:
-            if not event.Keycode in [19, 20, 21]:
+            if not event.keycode in [20, 21, 22]:
                 self.running = True
                 t =threading.Thread(target=self.time_thread)
                 t.start()
