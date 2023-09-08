@@ -12,6 +12,8 @@ class TypeSpeedGUI:
         self.stt.geometry("800x600")
         self.stt.configure(bg="black")
         #keycode = event.keycode
+        self.counter = 0.0
+        self.started = False
 
         self.Texts = open("Texts.txt", "r").read().split("\n")
 
@@ -32,8 +34,8 @@ class TypeSpeedGUI:
 
         self.frame.pack(expand=True)
 
-        self.counter = 0.0
-        self.started = False
+        #self.counter = 0.0
+        #self.started = False
 
         self.stt.mainloop()
 
@@ -57,7 +59,7 @@ class TypeSpeedGUI:
             self.counter += 0.1
             cps = len(self.input_entry.get()) / self.counter
             cpm = cps * 60
-            wps = len(self.input_entry.get().split("")) / self.counter
+            wps = len(self.input_entry.get().split(" ")) / self.counter
             wpm = wps * 60
             self.speed_label.config(text=f"Speed: \n{cps:.2f} CPS\n{cpm:.2f} CPM\n{wps:.2f} WPS\n{wpm:.2f} WPM")
 
